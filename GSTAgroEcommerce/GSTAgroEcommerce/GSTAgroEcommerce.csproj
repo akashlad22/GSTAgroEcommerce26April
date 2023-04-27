@@ -630,6 +630,10 @@
     <Content Include="Views\Buyer\WishListGrid.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Admin\ProductGrid.cshtml" />
+    <Content Include="Views\Buyer\MyWallet.cshtml" />
+    <Content Include="Views\Buyer\OrderDetails.cshtml" />
+    <Content Include="Views\Buyer\OrderHistory.cshtml" />
+    <Content Include="Views\Buyer\TrackOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

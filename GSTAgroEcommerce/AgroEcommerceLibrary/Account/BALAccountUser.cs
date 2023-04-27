@@ -10,7 +10,8 @@ namespace AgroEcommerceLibrary.AccountUser
 {
     public class BALAccountUser
     {
-        SqlConnection con = new SqlConnection("Data Source=AKASH\\SQLEXPRESS;Initial Catalog=GSTAgroE-Commerce;Integrated Security=True");
+        //SqlConnection con = new SqlConnection("Data Source=AKASH\\SQLEXPRESS;Initial Catalog=GSTAgroE-Commerce;Integrated Security=True");
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-G0RI5B8;Initial Catalog=GSTAgroE-Commerce;Integrated Security=True");
 
         public SqlDataReader LogIn(AccountUser user)
         {
@@ -82,7 +83,7 @@ namespace AgroEcommerceLibrary.AccountUser
             SqlCommand cmd = new SqlCommand("SPAgroBuyer", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@flag", "CheckExtranalLogin");
-            cmd.Parameters.AddWithValue("@emailid", user.EmailId);
+            cmd.Parameters.AddWithValue("@EmailId", user.EmailId);
             SqlDataReader dr = cmd.ExecuteReader();
             return dr;
             con.Close();

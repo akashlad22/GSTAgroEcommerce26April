@@ -14,6 +14,7 @@ using System.Net;
 using GoogleAuthentication.Services;
 using System.Web.Script.Serialization;
 using System.Security.Cryptography;
+using System.Drawing;
 
 namespace GSTAgroEcommerce.Controllers
 {
@@ -21,8 +22,9 @@ namespace GSTAgroEcommerce.Controllers
     {
         BALBuyer obj = new BALBuyer();
         string Code;
+        public string add;
         // GET: Buyer
-      
+
         //Prathamesh Start..............//
         public ActionResult Index()
         {                                                   // summerProducts
@@ -265,7 +267,7 @@ namespace GSTAgroEcommerce.Controllers
                 {
                     //var result = new { data = "error" };
                     //return Json (result,JsonRequestBehavior.AllowGet);
-                    return await Task.Run(()=> RedirectToAction("Login"));
+                    return await Task.Run(()=> RedirectToAction("Login", "Account"));
                 }
             }
             catch (Exception ex)
@@ -307,7 +309,7 @@ namespace GSTAgroEcommerce.Controllers
             }
             else
             {
-                return  await Task.Run(()=> RedirectToAction("Login"));
+                return  await Task.Run(()=> RedirectToAction("Login","Account"));
             }
         }
 
@@ -398,7 +400,7 @@ namespace GSTAgroEcommerce.Controllers
             }
             else
             {
-                return await Task.Run(()=> RedirectToAction("Login"));
+                return await Task.Run(()=> RedirectToAction("Login","Account"));
             }
             return await Task.Run(()=> View());
         }
@@ -490,8 +492,224 @@ namespace GSTAgroEcommerce.Controllers
 
             return await Task.Run(()=> View(objU));
         }
+        ////Dhanashri start
+        ///
+        public async Task<ActionResult> OrderHistory(int? id)
+        {
+            if (Session["BuyerCode"] != null)
+            {
+                Buyer objU = new Buyer();
+                string buyercode = Session["BuyerCode"].ToString();
+                objU.BuyerCode = buyercode;
+                DataSet ds = new DataSet();
+                ds = obj.FilterButtons();
+                List<Buyer> StatusFIlter = new List<Buyer>();
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    StatusFIlter.Add(new Buyer
+                    {
+                        Status = dr["Status"].ToString(),
+                        StatusId = Convert.ToInt32(dr["StatusId"].ToString())
+                    });
+                    objU.Statuslst = StatusFIlter;
+                }
 
-      
+                if (id == null)
+                {
+                    ds = obj.OrderHistory(objU);
+                    List<Buyer> lstUserDt1 = new List<Buyer>();
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                       Buyer obj1 = new Buyer();
+                        obj1.OrderNo = ds.Tables[0].Rows[i]["OrderCode"].ToString();
+                        obj1.MainImage = ds.Tables[0].Rows[i]["MainImage"].ToString();
+                        obj1.ProductName = ds.Tables[0].Rows[i]["ProductName"].ToString();
+                        obj1.ProductQuantity =Convert.ToInt32( ds.Tables[0].Rows[i]["ProductQuantity"].ToString());
+                        obj1.Status = ds.Tables[0].Rows[i]["Status"].ToString();
+                        obj1.ManufacturerName = ds.Tables[0].Rows[i]["ManufacturerName"].ToString();
+                        obj1.ProcessDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["ProcessDate"].ToString());
+                        obj1.date = obj1.ProcessDate.ToShortDateString();
+                        obj1.ExpectedDeliveryDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["ExpectedDeliveryDate"].ToString());
+                       obj1.DeliveryDate = obj1.ExpectedDeliveryDate.ToShortDateString();
+                        obj1.Total = Convert.ToInt32(ds.Tables[0].Rows[i]["Total"].ToString());
+                        lstUserDt1.Add(obj1);
+                    }
+                    objU.Users = lstUserDt1;
+                    return await Task.Run(() => View(objU));
+                }
+                else
+                {
+                    ds = obj.ShowStatusWiseOrders(objU, (int)id);
+                    List<Buyer> lstUserDt1 = new List<Buyer>();
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        Buyer obj1 = new Buyer();
+                        obj1.OrderNo = ds.Tables[0].Rows[i]["OrderCode"].ToString();
+                        obj1.MainImage = ds.Tables[0].Rows[i]["MainImage"].ToString();
+                        obj1.ProductName = ds.Tables[0].Rows[i]["ProductName"].ToString();
+                        obj1.ProductQuantity = Convert.ToInt32(ds.Tables[0].Rows[i]["ProductQuantity"].ToString());
+                        obj1.Status = ds.Tables[0].Rows[i]["Status"].ToString();
+                        obj1.ManufacturerName = ds.Tables[0].Rows[i]["ManufacturerName"].ToString();
+                        obj1.ProcessDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["ProcessDate"].ToString());
+                        obj1.ExpectedDeliveryDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["ExpectedDeliveryDate"].ToString());
+                        obj1.Total = Convert.ToInt32(ds.Tables[0].Rows[i]["Total"].ToString());
+                        lstUserDt1.Add(obj1);
 
+                    }
+                    objU.Users = lstUserDt1;
+                    return await Task.Run(() => View(objU));
+                }
+            }
+            else
+            {
+                return await Task.Run(() => RedirectToAction("Login","Account"));
+            }
+        }
+        [HttpGet]
+        public async Task<ActionResult> TrackOrder(Buyer objU)
+        {
+            SqlDataReader dr;
+            dr = obj.TrackOrder(objU);
+
+            while (dr.Read())
+            {
+                objU.OrderStatusId = Convert.ToInt32(dr["OrderStatusId"].ToString());
+                objU.Status = dr["Status"].ToString();
+                objU.OrderNo = dr["OrderCode"].ToString();
+                objU.MainImage = dr["MainImage"].ToString();
+                objU.ProductName = dr["ProductName"].ToString();
+                objU.ProductQuantity = Convert.ToInt32(dr["ProductQuantity"].ToString());
+                objU.Total = Convert.ToInt32(dr["Total"].ToString());
+                objU.StatusId = Convert.ToInt32(dr["StatusId"].ToString());
+                objU.BuyerFullName = dr["BuyerFullName"].ToString();
+                objU.MobileNo = dr["MobileNo"].ToString();
+                add = dr["DeliveryAddress"].ToString();
+                objU.PaymentMode = dr["PaymentMode"].ToString();
+                objU.RejectionReason = dr["RejectionReason"].ToString();
+
+            }
+
+            dr.Close();
+            string[] Address = add.Split('@');
+            objU.Address = Address[0] + " " + Address[1] + " " + Address[2] + " " + Address[3];
+            ViewBag.statusId = objU.OrderStatusId;
+            ViewBag.RejectionReason = objU.RejectionReason;
+            ViewBag.PayMode = objU.StatusId;
+            return await Task.Run(() => View(objU));
+
+        }
+        [HttpGet]
+        public async Task<ActionResult> OrderDetails(Buyer objU)
+        {
+           
+            SqlDataReader dr;
+            dr = obj.OrderDetails(objU);
+
+            while (dr.Read())
+            {
+                objU.OrderNo = dr["OrderCode"].ToString();
+                objU.MainImage = dr["MainImage"].ToString();
+                objU.ProductName = dr["ProductName"].ToString();
+                objU.ProductQuantity = Convert.ToInt32(dr["ProductQuantity"].ToString());
+                objU.ManufacturerName = dr["ManufacturerName"].ToString();
+                objU.Total = Convert.ToInt32(dr["Total"].ToString());
+                objU.ShippingCharges = Convert.ToInt32(dr["ShippingCharges"].ToString());
+
+            }
+            dr.Close();
+            var list = new List<string>() { "Wrong contact number entered", "Incorrect Payment method selected", "Ordered by mistake" };
+            ViewBag.list = list;
+            return await Task.Run(() => PartialView(objU));
+        }
+       
+        public async Task<ActionResult> Cancel(string orderno, string reason)
+        {
+            
+            if (reason == "")
+            {
+                var Status = new { data = "Failure" };
+                return await Task.Run(() => Json(Status, JsonRequestBehavior.AllowGet));
+            }
+            else
+            {
+                var Status = new { data = "Success" };
+                return await Task.Run(() => Json(Status, JsonRequestBehavior.AllowGet));
+            }
+        }
+        [HttpPost]
+        public async Task<ActionResult> CancelOrder(string orderno, string reason)
+        {
+
+            string buyercode = Session["BuyerCode"].ToString();
+
+            obj.CancelOrder(orderno, buyercode, reason);
+            return await Task.Run(() => RedirectToAction("OrderHistory"));
+        }
+        [HttpGet]
+        public async Task<ActionResult> MyWallet(Buyer objU)
+
+        {
+            if (Session["BuyerCode"] != null)
+            {
+                string buyercode = Session["BuyerCode"].ToString();
+                objU.BuyerCode = buyercode;
+                DataSet ds = new DataSet();
+                ds = obj.MyWallet(objU);
+               // Buyer objUser = new Buyer();
+                List<Buyer> lstUserDt1 = new List<Buyer>();
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {if (DateTime.Now <= Convert.ToDateTime(ds.Tables[0].Rows[i]["CouponExpDate"].ToString()))
+                    {
+                        Buyer obj1 = new Buyer();
+                        obj1.CouponCode = ds.Tables[0].Rows[i]["CouponCode"].ToString();
+                        obj1.CouponAmount = Convert.ToInt32(ds.Tables[0].Rows[i]["CouponAmount"].ToString());
+                        obj1.CouponRange = ds.Tables[0].Rows[i]["CouponRange"].ToString();
+                        obj1.ExpiryDays = ds.Tables[0].Rows[i]["ExpiryDays"].ToString();
+
+                        obj1.CouponExpDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["CouponExpDate"].ToString());
+                        obj1.date = obj1.CouponExpDate.ToShortDateString();
+                        lstUserDt1.Add(obj1);
+                    }
+                   
+                }
+                objU.Users = lstUserDt1;
+                SqlDataReader dr;
+                dr = obj.WalletCount(objU);
+
+                while (dr.Read())
+                {
+                    
+                        objU.TotalPoints = dr["TotalPoints"].ToString();
+                    if(objU.TotalPoints == "")
+                    {
+                        objU.TotalPoints = "0";
+                    }
+                    
+                }
+                dr.Close();
+                ViewBag.RewardPoints = objU.TotalPoints;
+                SqlDataReader dr1;
+                dr1 = obj.ViewTandC();
+                while (dr1.Read())
+                {
+                    objU.PolicyDescriptionPdf = dr1["PolicyDescriptionPdf"].ToString();
+
+                }
+                dr1.Close();
+                ViewBag.PolicyDescriptionPdf = objU.PolicyDescriptionPdf;
+                return await Task.Run(() => View(objU   ));
+            }
+            else
+            {
+                return await Task.Run(() => RedirectToAction("Login","Account"));
+            }
+        }
+        public async Task<ActionResult> RefundRequest(Buyer objU)
+        {
+            string buyercode = Session["BuyerCode"].ToString();
+            obj.RefundRequest(objU);
+            var Status = new { data = "success" };
+            return await Task.Run(() => Json(Status, JsonRequestBehavior.AllowGet));
+        }
     }
 }

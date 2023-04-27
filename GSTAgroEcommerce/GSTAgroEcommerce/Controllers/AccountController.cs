@@ -91,7 +91,7 @@ namespace GSTAgroEcommerce.Controllers
                     dr1.Close();
                     SqlDataReader dr2;
                     dr2 = obj.LogInAdmin(user);
-                    while (dr2.Read())
+                    if (dr2.Read())
                     {
                         FormsAuthentication.SetAuthCookie(user.EmailId, true);
                         user.AdminId = Convert.ToInt32(dr2["AdminId"].ToString());
@@ -108,12 +108,13 @@ namespace GSTAgroEcommerce.Controllers
                         return await Task.Run(()=> RedirectToAction("Index", "Admin"));
 
                     }
+                     else
+                    {
+                        TempData["ErrorMessage"] = "Incorrect Login Details";
+                        return await Task.Run(() => RedirectToAction("Index", "Admin"));
+                    }
                 }
-                else
-                {
-                    ViewBag.LogInErrorMessage = "Incorrect Login Details";
-                    return await Task.Run(() => RedirectToAction("Index", "Admin"));
-                }
+               
 
 
             }
@@ -174,7 +175,7 @@ namespace GSTAgroEcommerce.Controllers
             dr.Close();
 
             Buyer objU = new Buyer();
-            obj1.RegistrationDate = DateTime.Now;
+            user.RegistrationDate = DateTime.Now;
             obj.ResisterExtrnalLogIn(user);///Extrnal Login Registration
 
             Session["BuyerCode"] = user.BuyerCode.ToString();

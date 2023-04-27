@@ -11,7 +11,8 @@ namespace AgroEcommerceLibrary.Admin
     public class BALAdmin
     {
 
-        SqlConnection con = new SqlConnection("Data Source=AKASH\\SQLEXPRESS;Initial Catalog=GSTAgroE-Commerce;Integrated Security=True");
+      //  SqlConnection con = new SqlConnection("Data Source=AKASH\\SQLEXPRESS;Initial Catalog=GSTAgroE-Commerce;Integrated Security=True");
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-G0RI5B8;Initial Catalog=GSTAgroE-Commerce;Integrated Security=True");
 
         /////////-----------Prathmesh Start-----------////////
         public DataSet GetProductAdmin()
