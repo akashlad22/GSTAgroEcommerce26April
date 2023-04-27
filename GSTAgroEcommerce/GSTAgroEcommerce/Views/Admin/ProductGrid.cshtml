@@ -88,7 +88,7 @@
                         @Html.DisplayNameFor(model => model.ProductName)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.FullName)
+                        @Html.DisplayNameFor(model => model.SellerFullName)
                     </th>
 
 
@@ -124,7 +124,7 @@
                             @Html.DisplayFor(modelItem => item.ProductName)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.FullName)
+                            @Html.DisplayFor(modelItem => item.SellerFullName)
                         </td>
 
 
@@ -204,8 +204,9 @@
                                 var Photo = item.MainImage;
                                 var rows = "<tr>" +
                                     "<td>" + "<img src='" + Photo + "' class=imgid >" + "</td>" +
-                                    "<td>" + item.FullName + "</td>" +
                                     "<td>" + item.ProductName + "</td>" +
+                                    "<td>" + item.SellerFullName + "</td>" +
+                                    
                                     "<td>" + item.Quantity + "</td>" +
                                     "<td>" + item.CategoryName + "</td>" +
                                     "<td>" + item.Status + "</td>" +
@@ -243,8 +244,9 @@
                                 var Photo = item.MainImage;
                                 var rows = "<tr>" +
                                     "<td>" + "<img src='" + Photo + "' class=imgid >" + "</td>" +
-                                    "<td>" + item.FullName + "</td>" +
                                     "<td>" + item.ProductName + "</td>" +
+                                    "<td>" + item.SellerFullName + "</td>" +
+                                    
 
                                     "<td>" + item.Quantity + "</td>" +
                                     "<td>" + item.CategoryName + "</td>" +

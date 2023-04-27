@@ -162,20 +162,38 @@
                             </ul>
                         </li>
                         <!--<li class="nav-item dropdown">
-                            <a class="nav-link lang arrow" key="Gallery" href="@Url.Action("Gallery","Buyer")">Gallery</a>
-                            <ul class="dropdown-menu lang">
-                                <li> <a class="lang" key="Sidebar Shop" href="shop.html">Fertilizers</a></li>-->
+        <a class="nav-link lang arrow" key="Gallery" href="@Url.Action("Gallery","Buyer")">Gallery</a>
+        <ul class="dropdown-menu lang">
+            <li> <a class="lang" key="Sidebar Shop" href="shop.html">Fertilizers</a></li>-->
                         @*<li> @Html.ActionLink("New Shop","index","Buyer")</li>*@
                         <!--<li> <a class="lang" key="Shop Detail" href="shop-detail.html"> Fruits & Vegetables</a></li>
-                                <li><a class="lang" key="Cart" href="cart.html">Grocery</a></li>
-                                <li><a class="lang" key="Checkout" href="checkout.html">Pesticides</a></li>
-                                <li><a class="lang" key="My Account" href="my-account.html">Seeds</a></li>
-                                <li><a class="lang" key="Wishlist" href="wishlist.html">Tools & Equipment</a></li>
-                            </ul>
+            <li><a class="lang" key="Cart" href="cart.html">Grocery</a></li>
+            <li><a class="lang" key="Checkout" href="checkout.html">Pesticides</a></li>
+            <li><a class="lang" key="My Account" href="my-account.html">Seeds</a></li>
+            <li><a class="lang" key="Wishlist" href="wishlist.html">Tools & Equipment</a></li>
+        </ul>
 
-                        </li>-->
+    </li>-->
 
                         <li class="nav-item"><a class="nav-link  lang" key="Contact Us" href="contact-us.html">Contact Us</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">My Account</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown">
+                                    <a href="shop.html" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">My Profile</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="shop.html">Update Profile</a></li>
+                                        <li><a href="shop-detail.html">Change Password</a></li>
+                                    </ul>
+                                <li class="dropdown">
+                                    <a href="@Url.Action("OrderHistory","Buyer")">My Orders</a>
+
+                                <li><a href="@Url.Action("MyWallet","Buyer")">My Wallet</a></li>>
+                                <li><a href="checkout.html">Update Kyc</a></li>
+                                <li><a href="my-account.html">Notifications</a></li>
+                                <li><a href="@Url.Action("Logout","Account")">Logout</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
 

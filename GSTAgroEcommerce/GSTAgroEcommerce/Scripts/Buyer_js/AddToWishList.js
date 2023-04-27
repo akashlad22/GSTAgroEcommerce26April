@@ -40,7 +40,7 @@
                     icon: "warning",
                     button: "Ok",
                 }).then(function () {
-                    window.location.href = "/Buyer/Login";
+                    window.location.href = "/Account/Login";
                 })
 
                 //sweetAlert({

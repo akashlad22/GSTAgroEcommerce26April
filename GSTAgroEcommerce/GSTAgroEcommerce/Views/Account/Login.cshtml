@@ -125,9 +125,13 @@
 
 
                     @*</form>*@
-                    <label>
-                        @Html.ViewBag.LogInErrorMessage
-                    </label>
+            <label style="color:red;">
+                @if (TempData["Errormessage"] != null)
+                {
+                   <br/>
+                    @TempData["Errormessage"]
+                }
+                </label>
                 }
             </div>
         </div>

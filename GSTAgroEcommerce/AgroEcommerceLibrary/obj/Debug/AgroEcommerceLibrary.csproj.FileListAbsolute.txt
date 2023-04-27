@@ -16,3 +16,15 @@ H:\class\MVC ProjectVS22\GSTAgroEcommerce\AgroEcommerceLibrary\obj\Debug\AgroEco
 H:\class\MVC ProjectVS22\GSTAgroEcommerce\AgroEcommerceLibrary\obj\Debug\AgroEcommerceLibrary.csproj.CopyComplete
 H:\class\MVC ProjectVS22\GSTAgroEcommerce\AgroEcommerceLibrary\obj\Debug\AgroEcommerceLibrary.dll
 H:\class\MVC ProjectVS22\GSTAgroEcommerce\AgroEcommerceLibrary\obj\Debug\AgroEcommerceLibrary.pdb
+D:\Clone Project\GSTAgroEcommerce26April\GSTAgroEcommerce\AgroEcommerceLibrary\bin\Debug\AgroEcommerceLibrary.dll
+D:\Clone Project\GSTAgroEcommerce26April\GSTAgroEcommerce\AgroEcommerceLibrary\bin\Debug\AgroEcommerceLibrary.pdb
+D:\Clone Project\GSTAgroEcommerce26April\GSTAgroEcommerce\AgroEcommerceLibrary\bin\Debug\GoogleAuthentication.dll
+D:\Clone Project\GSTAgroEcommerce26April\GSTAgroEcommerce\AgroEcommerceLibrary\bin\Debug\Newtonsoft.Json.dll
+D:\Clone Project\GSTAgroEcommerce26April\GSTAgroEcommerce\AgroEcommerceLibrary\bin\Debug\PagedList.dll
+D:\Clone Project\GSTAgroEcommerce26April\GSTAgroEcommerce\AgroEcommerceLibrary\bin\Debug\Newtonsoft.Json.xml
+D:\Clone Project\GSTAgroEcommerce26April\GSTAgroEcommerce\AgroEcommerceLibrary\bin\Debug\PagedList.xml
+D:\Clone Project\GSTAgroEcommerce26April\GSTAgroEcommerce\AgroEcommerceLibrary\obj\Debug\AgroEcommerceLibrary.csproj.AssemblyReference.cache
+D:\Clone Project\GSTAgroEcommerce26April\GSTAgroEcommerce\AgroEcommerceLibrary\obj\Debug\AgroEcommerceLibrary.csproj.CoreCompileInputs.cache
+D:\Clone Project\GSTAgroEcommerce26April\GSTAgroEcommerce\AgroEcommerceLibrary\obj\Debug\AgroEcommerceLibrary.csproj.CopyComplete
+D:\Clone Project\GSTAgroEcommerce26April\GSTAgroEcommerce\AgroEcommerceLibrary\obj\Debug\AgroEcommerceLibrary.dll
+D:\Clone Project\GSTAgroEcommerce26April\GSTAgroEcommerce\AgroEcommerceLibrary\obj\Debug\AgroEcommerceLibrary.pdb
