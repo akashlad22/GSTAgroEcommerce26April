@@ -25,7 +25,7 @@ namespace AgroEcommerceLibrary.AccountUser
         public string EmailId { get; set; }
 
         [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Password is required")]
+        [Required(ErrorMessage = "Password is Required")]
         public string Password { get; set; }
         public DateTime RegistrationDate { get; set; }
 
