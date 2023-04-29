@@ -11,7 +11,7 @@ using System.Xml.Linq;
 namespace AgroEcommerceLibrary.Buyer
 {
     public class Buyer
-    {
+    {  
         public List<Buyer> category { get; set; }
         public List<Buyer> products { get; set; }
         public List<Buyer> Wishlist { get; set; }
@@ -31,12 +31,12 @@ namespace AgroEcommerceLibrary.Buyer
         public string BuyerCode { get; set; }
         public string BuyerFullName { get; set; }
         [DataType(DataType.EmailAddress)]
-        [Required(ErrorMessage = " Enter Valid Email Required")]
+        [Required(ErrorMessage =" Enter Valid Email Required")]
         public string EmailId { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
         public string MobileNo { get; set; }
-        public string Addresstype { get; set; }
+        public string Addresstype  { get; set; }
         public string AlternaterMobileNo { get; set; }
         [Display(Name = "City ")]
         public int CityId { get; set; }
@@ -52,42 +52,38 @@ namespace AgroEcommerceLibrary.Buyer
         ////////// //tblOrder
         public int OrderId { get; set; }
         public string OrderNo { get; set; }
-        public string OrderCode { get; set; }
-
+        public string OrderCode { get; set; } 
+      
         // public string BuyerCode { get; set; }
         public int MyProperty { get; set; }
         public string ProductCode { get; set; }
         public int ProductQuantity { get; set; }
         public int AddressId { get; set; }
         public int OrderStatusId { get; set; }
-        [Display(Name = "Process Date ")]
         public DateTime ProcessDate { get; set; }
-        public int Total { get; set; }      //
 
         ///Address prop
         public string Home { get; set; }
         public string Office { get; set; }
         public string Other { get; set; }
-        [Display(Name = "Delivery Address")]
         public string Address { get; set; }
         public string Landmark { get; set; }
         public int PinCode { get; set; }
         [Display(Name = "Country ")]
         public int CountryId { get; set; }
-
+     
         public string CountryName { get; set; }
         [Display(Name = "State ")]
         public int StateId { get; set; }
-
+      
         public string StateName { get; set; }
-
-        public string CityName { get; set; }
+               
+       public string CityName { get; set; }
 
         public int ShippingCharges { get; set; }
         public bool IsDelete { get; set; }
         public int ShareId { get; set; }
         public bool IsNotify { get; set; }
-        [Display(Name = "Expected Delivery Date")]
         public DateTime ExpectedDeliveryDate { get; set; }
         public string RejectedByUserCode { get; set; }
         public string RejectionReason { get; set; }
@@ -101,7 +97,6 @@ namespace AgroEcommerceLibrary.Buyer
         public string TransactionId { get; set; }
         public string InvoiceNo { get; set; }
 
-        /// </summary>
         //////Wallet
         public int WalletId { get; set; }
         public int RewardId { get; set; }
@@ -114,26 +109,24 @@ namespace AgroEcommerceLibrary.Buyer
         public int RatingStarNo { get; set; }
         public string FeedbackOnProduct { get; set; }
 
-
+      
         /// Product
-
+       
         public int ProductId { get; set; }
         //public string ProductCode { get; set; }
         public int CategoryCode { get; set; }
         public int CategoryId { get; set; }
-        [Display(Name = "Product Name")]
         public string ProductName { get; set; }
-        [Display(Name = "Manufacturer Name")]
-        public string ManufacturerName { get; set; }    //
         public string Description { get; set; }
         public float MRP { get; set; }
-        [Display(Name = "Product Image")]
         public string MainImage { get; set; }
-        public string Image1 { get; set; }
-        public string ProductWeight { get; set; }
+        public string Image1 { get; set; }   
+        public string Image2 { get; set; }
+        public string Image3 { get; set; }
+        public string ProductWeight  { get; set; }  
         public bool IsproductExpirable { get; set; }
         public bool IsProductReturnable { get; set; }
-        public float Quantity { get; set; }
+        public float Quantity { get; set; } 
 
 
         //Category
@@ -158,22 +151,7 @@ namespace AgroEcommerceLibrary.Buyer
         public int SubCategory3Id { get; set; }
         public string SubCategory3Name { get; set; }
         public string SubCategory3Code { get; set; }
-        ///Dhanashri start
-        public List<Buyer> Statuslst { get; set; }
-        public List<Buyer> Users { get; set; }
-        ///tblStatus
-        public string Status { get; set; }
-        ////Policy
-        public string PolicyDescriptionPdf { get; set; }
-        ///tblCoupon <summary>
-        public int CouponAmount { get; set; }      //
 
-        public string CouponRange { get; set; }
-        public string ExpiryDays { get; set; }
-        public string date { get; set; }
-        public string DeliveryDate { get; set; }
-        public DateTime CouponExpDate { get; set; }
-        public string TotalPoints {get; set;} 
-        ///Dhanashri end
+        
     }
 }

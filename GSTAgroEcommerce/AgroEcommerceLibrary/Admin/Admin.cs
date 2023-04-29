@@ -18,7 +18,6 @@ namespace AgroEcommerceLibrary.Admin
         public int AdminId { get; set; }
         [DisplayName("Seller Name")]
         public string SellerFullName { get; set; }
-
         public string EmailId { get; set; }
         public string Password { get; set; }
         public string MobileNo { get; set; }
